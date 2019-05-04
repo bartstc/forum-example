@@ -5,6 +5,7 @@ const express = require('express'),
   port = process.env.PORT || 5000;
 
 const users = require('./routes/user');
+const posts = require('./routes/post');
 
 const app = express();
 
@@ -19,6 +20,7 @@ require('./config/passport')(passport);
 
 // Use Routes
 app.use('/users', users);
+app.use('/posts', posts);
 
 mongoose
   .connect(db, { useNewUrlParser: true })
