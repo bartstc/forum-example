@@ -6,13 +6,12 @@ const User = require('../models/User');
 const signinValidation = require('../validation/signin');
 const signupValidation = require('../validation/signup');
 
+// SIGNUP USER
 exports.signupUser = async (req, res, next) => {
-  const { errors, isValid } = signupValidation(req.body);
   const { nickname, email, password } = req.body;
 
-  if (!isValid) {
-    return res.status(400).json(errors);
-  };
+  const { errors, isValid } = signupValidation(req.body);
+  if (!isValid) return res.status(400).json(errors);
 
   const user = await User.findOne({ email });
   if (user) {
@@ -24,17 +23,16 @@ exports.signupUser = async (req, res, next) => {
     const newUser = await new User({ nickname, email, password }).save();
     res.json(newUser);
   } catch (err) {
-    console.log(err)
+    console.log(err);
   };
 };
 
+// SIGNIN USER
 exports.signinUser = async (req, res, next) => {
-  const { errors, isValid } = signinValidation(req.body);
   const { email, password } = req.body;
 
-  if (!isValid) {
-    return res.status(400).json(errors);
-  };
+  const { errors, isValid } = signinValidation(req.body);
+  if (!isValid) return res.status(400).json(errors);
 
   const user = await User.findOne({ email });
   if (!user) {
@@ -59,10 +57,17 @@ exports.signinUser = async (req, res, next) => {
   );
 };
 
-exports.getUser = (req, res, next) => { // user data is avaliable in req object
+// GET USER
+exports.getUser = ({ user: { id, nickname, email } }, res, next) => { // user data is avaliable in req object
   res.json({
-    id: req.user.id,
-    nickname: req.user.nickname,
-    email: req.user.email
+    id,
+    nickname,
+    email
   });
+};
+
+// DELETE USER
+exports.deleteUser = async (req, res) => {
+  await User.findOneAndRemove({ _id: req.user.id });
+  res.json({ success: true });
 };

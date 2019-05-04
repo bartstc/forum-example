@@ -7,5 +7,6 @@ const userController = require('../controllers/user');
 router.post('/signup', userController.signupUser);
 router.post('/signin', userController.signinUser);
 router.get('/current', isAuth, userController.getUser);
+router.delete('/delete', isAuth, userController.deleteUser);
 
 module.exports = router;
