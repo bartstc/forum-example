@@ -3,14 +3,12 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../../modules/auth/authActions';
-// import { clearCurrentProfile } from '../../actions/profileActions';
 import AuthLinks from './navbar/AuthLinks';
 import GuestLinks from './navbar/GuestLinks';
 
 class Navbar extends Component {
   onLogoutClick = e => {
     e.preventDefault();
-    // this.props.clearCurrentProfile();
     this.props.logoutUser();
   };
 
@@ -31,7 +29,7 @@ class Navbar extends Component {
           </button>
 
           <div className="collapse navbar-collapse" id="mobile-nav">
-            {this.props.isAuthenticated ? <AuthLinks onLogoutClick={() => this.onLogoutClick} /> : <GuestLinks />}
+            {this.props.auth.isAuthenticated ? <AuthLinks onLogoutClick={this.onLogoutClick} /> : <GuestLinks />}
           </div>
         </div>
       </nav>

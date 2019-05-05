@@ -59,3 +59,18 @@ export const logoutUser = () => dispatch => {
   // Set current user to {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
 };
+
+// Delete account
+export const deleteAccount = () => dispatch => {
+  if (window.confirm('Are you sure? This can NOT be undone!')) {
+    axios.delete('/users/delete')
+      .then(res => dispatch({
+        type: SET_CURRENT_USER, // log out after sending empty object
+        payload: {}
+      }))
+      .catch(err => dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      }))
+  };
+};

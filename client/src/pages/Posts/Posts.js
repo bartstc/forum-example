@@ -18,6 +18,8 @@ class Posts extends Component {
 
     if (posts === null || loading) {
       postContent = <Spinner />
+    } else if (posts.length === 0) {
+      postContent = <p className="lead">No posts yet.</p>
     } else {
       postContent = <PostList posts={posts} />
     }
@@ -27,7 +29,7 @@ class Posts extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              {this.props.isAuthenticated && <PostForm />}
+              {this.props.auth.isAuthenticated && <PostForm />}
               {postContent}
             </div>
           </div>

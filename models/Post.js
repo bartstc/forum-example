@@ -14,14 +14,6 @@ const PostSchema = new Schema({
   nickname: {
     type: String
   },
-  likes: [ // we pass user id that liked post, when user dislike - remove id from array
-    {
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: 'users'
-      }
-    }
-  ],
   comments: [
     {
       user: {
