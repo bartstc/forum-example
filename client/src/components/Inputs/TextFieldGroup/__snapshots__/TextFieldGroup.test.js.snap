@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextAreaFieldGroup renders TextFieldGroup without errors 1`] = `
+<div
+  className="form-group"
+>
+  <input
+    className="form-control form-control-lg is-invalid"
+    disabled="string"
+    name="string"
+    onChange={[MockFunction]}
+    placeholder="string"
+    type="string"
+    value="string"
+  />
+  <small
+    className="form-text text-muted"
+  >
+    string
+  </small>
+  <div
+    className="invalid-feedback"
+  >
+    string
+  </div>
+</div>
+`;

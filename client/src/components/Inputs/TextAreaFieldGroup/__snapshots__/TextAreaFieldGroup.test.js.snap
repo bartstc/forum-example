@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextAreaFieldGroup renders TextAreaFieldGroup without errors 1`] = `
+<div
+  className="form-group"
+>
+  <textarea
+    className="form-control form-control-lg is-invalid"
+    name="email"
+    onChange={[MockFunction]}
+    placeholder="email"
+    value="email@gmail.com"
+  />
+  <small
+    className="form-text text-muted"
+  >
+    info
+  </small>
+  <div
+    className="invalid-feedback"
+  >
+    error
+  </div>
+</div>
+`;
+
+exports[`renders TextAreaFieldGroup without errors 1`] = `
+<div
+  className="form-group"
+>
+  <textarea
+    className="form-control form-control-lg is-invalid"
+    name="email"
+    onChange={[MockFunction]}
+    placeholder="email"
+    value="email@gmail.com"
+  />
+  <small
+    className="form-text text-muted"
+  >
+    info
+  </small>
+  <div
+    className="invalid-feedback"
+  >
+    error
+  </div>
+</div>
+`;
