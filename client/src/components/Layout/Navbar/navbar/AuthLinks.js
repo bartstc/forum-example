@@ -14,13 +14,13 @@ const AuthLinks = ({ onLogoutClick }) => (
       </Link>
     </li>
     <li className="nav-item">
-      <a
-        href=""
+      <Link
+        to="/login"
         onClick={onLogoutClick}
         className="nav-link"
       >
         Logout
-      </a>
+      </Link>
     </li>
   </ul>
 );

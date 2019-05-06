@@ -9,7 +9,7 @@ const GuestLinks = () => (
       </Link>
     </li>
     <li className="nav-item">
-      <Link className="nav-link" to="/signin">
+      <Link className="nav-link" to="/login">
         Sign In
       </Link>
     </li>

@@ -9,7 +9,7 @@ import { SET_CURRENT_USER } from './authTypes';
 export const registerUser = (userData, history) => dispatch => {
   axios
     .post('/users/signup', userData)
-    .then(() => history.push('/signin'))
+    .then(() => history.push('/login'))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

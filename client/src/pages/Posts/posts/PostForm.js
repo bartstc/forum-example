@@ -1,72 +1,53 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../../../components/Inputs/TextAreaFieldGroup/TextAreaFieldGroup';
 import { addPost } from '../../../modules/post/postActions';
 
-class PostForm extends Component {
-  state = {
-    text: '',
-    errors: {}
+const PostForm = props => {
+  const [text, setText] = useState('');
+
+  const onChange = e => {
+    setText(e.target.value);
   };
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({
-        errors: nextProps.errors
-      });
-    };
-  }
-
-  onChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
-
-  onSubmit = e => {
+  const onSubmit = e => {
     e.preventDefault();
 
-    const { user } = this.props.auth;
-
+    const { user } = props.auth;
     const newPost = {
-      text: this.state.text,
+      text: text,
       nickname: user.nickname,
       avatar: user.avatar
     };
 
-    this.props.addPost(newPost);
-
-    this.setState({ text: '' });
+    props.addPost(newPost);
+    setText('');
   };
 
-  render() {
-    const { errors } = this.state;
-
-    return (
-      <div className="post-form mb-3">
-        <div className="card card-info">
-          <div className="card-header bg-info text-white">
-            Add Post ...
+  return (
+    <div className="post-form mb-3">
+      <div className="card card-info">
+        <div className="card-header bg-info text-white">
+          Add Post ...
               </div>
-          <div className="card-body">
-            <form onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <TextAreaFieldGroup
-                  placeholder="Create a post"
-                  name="text"
-                  value={this.state.text}
-                  onChange={this.onChange}
-                  error={errors.text}
-                />
-              </div>
-              <button type="submit" className="btn btn-dark">Submit</button>
-            </form>
-          </div>
+        <div className="card-body">
+          <form onSubmit={onSubmit}>
+            <div className="form-group">
+              <TextAreaFieldGroup
+                placeholder="Create a post"
+                name="text"
+                value={text}
+                onChange={onChange}
+                error={props.errors.text}
+              />
+            </div>
+            <button type="submit" className="btn btn-dark">Submit</button>
+          </form>
         </div>
       </div>
-    );
-  }
+    </div>
+  )
 };
 
 PostForm.propTypes = {

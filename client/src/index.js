@@ -31,8 +31,8 @@ if (localStorage.jwtToken) {
   if (decoded.exp < currentTime) {
     // Logout user
     store.dispatch(logoutUser());
-    // Redirect to login
-    window.location.href = '/login';
+    // Redirect to signin
+    window.location.href = '/signin';
   };
 };
 
@@ -42,7 +42,7 @@ const Index = () => (
       <Layout>
         <Route exact path="/" component={Posts} />
         <Route exact path="/post/:id" component={Post} />
-        <Route exact path="/signin" component={SignIn} />
+        <Route exact path="/login" component={SignIn} />
         <Route exact path="/signup" component={SignUp} />
         <Switch>
           <PrivateRoute exact path="/profile" component={Profile} />
